@@ -1,0 +1,16 @@
+{
+	"en": "English",
+	"vi": "Việt Nam",
+	"Submit": "Submit",
+	"Search": "Search",
+	"%d member": {
+		"one": "%d member",
+		"other": "%d members"
+	},
+	"Profile": "Profile",
+	"Login": "Login",
+	"Register": "Register",
+	"Logout": "Logout",
+	"Account": "Account",
+	"Classield Website": "Classield Website"
+}

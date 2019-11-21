@@ -1,0 +1,16 @@
+{
+	"en": "English",
+	"vi": "Việt Nam",
+	"Submit": "Hoàn thành",
+	"Search": "Tìm kiếm",
+	"%d member": {
+		"one": "%d thành viên",
+		"other": "%d thành viên"
+	},
+	"Profile": "Hồ sơ",
+	"Login": "Đăng nhập",
+	"Register": "Đăng ký",
+	"Logout": "Thoát",
+	"Account": "Tài khoản",
+	"Classield Website": "Website Rao vặt"
+}
