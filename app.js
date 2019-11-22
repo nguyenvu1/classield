@@ -6,6 +6,11 @@ var i18n = require('i18n');
 var logger = require('morgan');
 var expHbs = require('express-handlebars');
 var mongoose = require('mongoose');
+var session = require('express-session');
+var passport = require('passport');
+var flash = require('connect-flash');
+var validator = require('express-validator');
+
 var settings = require('./config/settings');
 var database = require('./config/database');
 
@@ -53,10 +58,19 @@ i18n.configure({
     '__n': '__n'
   }
 });
-
 app.use(function(req, res, next){
-  i18n.init(req, res, next);
-});
+    i18n.init(req, res, next);
+  });
+
+app.use(session({
+  secret: settings.secured_key,
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(function(req, res, next){
   res.locals.clanguage = req.getLocale(); // Ngôn ngữ hiện tại
   res.locals.languages = i18n.getLocales(); // Danh sách khai báo trong phần cấu hình
