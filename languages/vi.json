@@ -12,5 +12,22 @@
 	"Register": "Đăng ký",
 	"Logout": "Thoát",
 	"Account": "Tài khoản",
-	"Classield Website": "Website Rao vặt"
+	"Classield Website": "Website Rao vặt",
+	"Member Register": "Đăng ký thành viên",
+	"I already have an account": "Tôi đã có tài khoản",
+	"First Name": "Họ",
+	"Input your first name": "Vui lòng nhập họ của bạn",
+	"Last Name": "Tên",
+	"Input your last name": "Vui lòng nhập tên của bạn",
+	"Email Address": "Địa chỉ Email",
+	"Input your email address": "Vui lòng nhập địa chỉ email",
+	"Password": "Mật khẩu",
+	"Input your password": "Nhập mật khẩu",
+	"Confirm Password": "Xác nhận mật khẩu",
+	"Confirm your password": "Xác nhận mật khẩu của bạn",
+	"Newsletter Register": "Đăng ký bài đăng mới",
+	"Do you want to subcribe to our promotional emails?": "Subcribe qua email?",
+	"Yes": "Có",
+	"No": "Không",
+	"I have read and agree to the Terms and Politics": "Tôi đã đọc và đồng ý với những <a href='#'>Quy định và Chính sách</a>"
 }

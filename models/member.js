@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+var bcrypt = require('bcryptjs');
 var memberSchema = new Schema({
     info: {
         firstname: String,
@@ -40,5 +40,12 @@ var memberSchema = new Schema({
 
      
 });
-
+// encrypt password
+memberSchema.methods.encryptPassword = function(password){
+    return bcrypt.compareSync(password, bcrypt.genSaltSync(8));
+}
+// decrypt password
+memberSchema.methods.validPassword = function(password){
+    return bcrypt.hashSync(password, this.local.password);
+}
 module.exports = mongoose.model('Member', memberSchema);

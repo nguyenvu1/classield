@@ -14,8 +14,8 @@ var validator = require('express-validator');
 var settings = require('./config/settings');
 var database = require('./config/database');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var index = require('./routes/index');
+var routerMember = require('./routes/member');
 
 var app = express();
 
@@ -23,7 +23,7 @@ mongoose.connect(database.dbStr);
 mongoose.connection.on('error', function(err){
 	console.log('Error connect to Database: ' + err);
 });
-
+require('./config/passport')
 // view engine setup
 var hbsConfig = expHbs.create({
 	helpers: require('./helpers/handlebars.js').helpers,
@@ -38,6 +38,7 @@ app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'templates/' + settings.defaultTemplate));
 
 app.use(logger('dev'));
+//app.use(validator())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -74,10 +75,13 @@ app.use(passport.session());
 app.use(function(req, res, next){
   res.locals.clanguage = req.getLocale(); // Ngôn ngữ hiện tại
   res.locals.languages = i18n.getLocales(); // Danh sách khai báo trong phần cấu hình
+  res.locals.settings = settings;
   next();
 });
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+
+app.use('/', index);
+app.use('/thanh-vien', routerMember);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
