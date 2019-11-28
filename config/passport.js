@@ -11,12 +11,12 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (id, done) {
-    Member.findById(id, function (err, user) {
+    Member.findById(id, function (err, member) {
 
         var newMember = member.toObject();
         newMember['provider'] = provider;
 
-        done(err, user);
+        done(err, newMember);
     });
 });
 
@@ -35,7 +35,7 @@ passport.use('local.register', new LocalStrategy({
     req.checkBody('password', req.__('Confirm password is not the same, please check again.')).equals(req.body.confirmpassword);
     req.checkBody('accept', req.__('You have to accept with our terms to continue.')).equals('1');
 
-    var errors = req.validatorError();
+    var errors = req.validationErrors();
     if(errors) {
         var messages = [];
         errors.forEach(function(error){
@@ -57,12 +57,12 @@ passport.use('local.register', new LocalStrategy({
         var newMember = new Member();
         newMember.info.firstname = req.body.firstname;
         newMember.info.lastname = req.body.lastname;
-        newMember.info.email = req.body.email;
-        newMember.info.password = newMember.encryptPassword(req.body.password);
-        newMember.info.newsletter = req.body.newsletter;
-        newMember.info.status = 'MEMBER';
+        newMember.local.email = req.body.email;
+        newMember.local.password = newMember.encryptPassword(req.body.password);
+        newMember.newsletter = req.body.newsletter;
+        newMember.roles = 'MEMBER';
         //Nếu yêu cầu xác thực tài khoản qua email thì trạng thái tài khoản là INACTIVE
-        newMember.info.status = (settings.confirmRegister == 1) ? 'INACTIVE' : 'ACTIVE';
+        newMember.status = (settings.confirmRegister == 1) ? 'INACTIVE' : 'ACTIVE';
 
         newMember.save(function(err, result) {
             if(err) {

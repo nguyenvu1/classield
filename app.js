@@ -9,16 +9,14 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
-var validator = require('express-validator');
 
 var settings = require('./config/settings');
 var database = require('./config/database');
-
 var index = require('./routes/index');
 var routerMember = require('./routes/member');
 
 var app = express();
-
+var validator = require('express-validator');
 mongoose.connect(database.dbStr);
 mongoose.connection.on('error', function(err){
 	console.log('Error connect to Database: ' + err);
@@ -38,7 +36,7 @@ app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'templates/' + settings.defaultTemplate));
 
 app.use(logger('dev'));
-//app.use(validator())
+app.use(validator());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -59,9 +57,7 @@ i18n.configure({
     '__n': '__n'
   }
 });
-app.use(function(req, res, next){
-    i18n.init(req, res, next);
-  });
+
 
 app.use(session({
   secret: settings.secured_key,
@@ -71,6 +67,10 @@ app.use(session({
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(function(req, res, next){
+  i18n.init(req, res, next);
+});
 
 app.use(function(req, res, next){
   res.locals.clanguage = req.getLocale(); // Ngôn ngữ hiện tại

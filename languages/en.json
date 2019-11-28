@@ -30,5 +30,12 @@
 	"Yes": "Yes",
 	"No": "No",
 	"I have read and agree to the Terms and Politics": "I have read and agree to the <a href='#'>Terms and Politics</a>",
-	"Please input first name.": "Please input first name."
+	"Please input first name.": "Please input first name.",
+	"Please input last name.": "Please input last name.",
+	"Email address invalid, please check again.": "Email address invalid, please check again.",
+	"Password invalid, password must be at least %d charaters or more": "Password invalid, password must be at least %d charaters or more",
+	"Confirm password is not the same, please check again.": "Confirm password is not the same, please check again.",
+	"You have to accept with our terms to continue.": "You have to accept with our terms to continue.",
+	"Email address used, please enter another email.": "Email address used, please enter another email.",
+	"Dashboard": "Dashboard"
 }

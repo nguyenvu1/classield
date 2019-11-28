@@ -11,7 +11,14 @@ exports.get_register = function(req, res, next) {
 
 // POST Register
 exports.post_register = passport.authenticate('local.register', {
-    successRedirect: 'thanh-vien/tai-khoan',
-    failureRedirect: 'thanh-vien/dang-ky',
+    successRedirect: '/thanh-vien/tai-khoan',
+    failureRedirect: '/thanh-vien/dang-ky',
     failureFlash: true
 });
+
+// GET Profile
+exports.get_profile = function(req, res, next) {
+    res.render('frontend/member/dashboard', {
+        pageTitle: req.__('Dashboard')
+    })
+};
